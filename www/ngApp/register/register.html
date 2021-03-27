@@ -1,0 +1,23 @@
+<div>
+   <div class="container">
+      <h1>regist-{{registerCtrl.a}}</h1>
+      <hr>
+      <div class="row">
+         <div class="col-lg-6">
+            {{registerCtrl.registerForm}}
+            <form name="registerForm">
+
+               <p>
+                  email:
+               </p>
+               <p>
+                  <input type="text" name="email" id="" class="form-control" ng-model="registerCtrl.registerForm.email" ng-pattern="/^\w+((.\w+)|(-\w+))@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/">
+                  <div class="alert alert-danger" role="alert" ng-show="registerForm.email.$dirty && registerForm.email.$invalid-pattern">ilegal emaill</div>
+               </p>
+
+            </form>
+         </div>
+      </div>
+
+   </div>
+</div>

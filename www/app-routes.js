@@ -16,11 +16,11 @@ define(function (require) {
                 controllerUrl: 'ngApp/home/HomeCtrl',
                 controller: 'HomeCtrl as homectrl'
             })
-            .state('root.music', {
-                url: '/music',
-                templateUrl: 'ngApp/music/music.html',
-                controllerUrl: 'ngApp/music/MusicCtrl',
-                controller: 'MusicCtrl as musicctrl'
+            .state('root.register', {
+                url: '/register',
+                templateUrl: 'ngApp/register/register.html',
+                controllerUrl: 'ngApp/register/RegisterCtrl',
+                controller: 'RegisterCtrl as registerCtrl'
             })
     }]);
 });
