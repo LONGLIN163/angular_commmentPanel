@@ -1,0 +1,26 @@
+{
+  "name": "hahah",
+  "authors": [
+    "developerlin123 <developerlin123@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-async-loader": "^1.0.1",
+    "angular-ui-router": "^1.0.29",
+    "angular": "^1.8.2",
+    "requirejs": "^2.3.6",
+    "jquery": "^3.6.0",
+    "jquery-ui": "^1.12.1"
+  }
+}

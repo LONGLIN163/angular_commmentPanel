@@ -1,0 +1,44 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+header{
+    width: 800px;
+    height: 100px;
+    background-color: rgb(248, 175, 175);
+    margin: 0 auto;
+}
+
+header nav{
+    font-size: 30px;
+}
+
+header nav :active{
+    color: red;
+}
+
+footer{
+    width: 800px;
+    height: 100px;
+    background-color: rgb(190, 176, 214);
+    margin: 0 auto;
+} 
+
+.content{
+    width: 800px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.left{
+    float: left;
+    height: 300px;
+    width: 300px;
+    background-color: rgb(94, 233, 106);
+}
+.right{
+    float: left;
+    height: 300px;
+    width: 500px;
+    background-color: rgb(245, 196, 60);
+}
