@@ -9,6 +9,10 @@ header{
     margin: 0 auto;
 }
 
+footer{
+    height: 20px;
+}
+
 header nav{
     font-size: 30px;
 }
@@ -17,12 +21,6 @@ header nav :active{
     color: red;
 }
 
-footer{
-    width: 800px;
-    height: 100px;
-    background-color: rgb(190, 176, 214);
-    margin: 0 auto;
-} 
 
 .content{
     width: 800px;

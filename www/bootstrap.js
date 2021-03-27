@@ -6,12 +6,14 @@ require.config({
         'angular-async-loader': 'assets/angular-async-loader/angular-async-loader.min',
         'jquery': 'assets/jquery/dist/jquery.min',
         'jquery-ui': 'assets/jquery-ui/jquery-ui.min',
+        'bootstrap': 'assets/bootstrap/dist/js/bootstrap.min'
     },
     shim: {
         'angular': {exports: 'angular'},
         'angular-ui-router': {deps: ['angular']},
         'jquery': {exports: ['jquery']},
-        'jquery-ui': {deps: ['jquery']}
+        'jquery-ui': {deps: ['jquery']},
+        'bootstrap': {deps: ['jquery']}
     }
 });
 

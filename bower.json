@@ -21,6 +21,7 @@
     "angular": "^1.8.2",
     "requirejs": "^2.3.6",
     "jquery": "^3.6.0",
-    "jquery-ui": "^1.12.1"
+    "jquery-ui": "^1.12.1",
+    "bootstrap": "3"
   }
 }
