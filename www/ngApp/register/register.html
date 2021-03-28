@@ -1,26 +1,26 @@
 <div>
    <div class="container">
-      <h1>regist-{{registerCtrl.a}}</h1>
+      <h1>regist:</h1>
       <hr>
       <div class="row">
          <div class="col-lg-6">
-            {{registerCtrl.registerForm}}
+            {{registerCtrl.registerFormObj}}
             <form name="registerForm">
 
                <p>
                   email:
                </p>
                <p>
-                  <input type="text" name="email" id="" class="form-control" ng-model="registerCtrl.registerForm.email" ng-pattern="/^\w+((.\w+)|(-\w+))@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/" ng-blur="registerCtrl.checkExist()">
+                  <input type="text" name="email" id="" class="form-control" ng-model="registerCtrl.registerFormObj.email" ng-pattern="/^\w+((.\w+)|(-\w+))@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/" ng-blur="registerCtrl.checkExist()">
                   <div class="alert alert-danger" role="alert" ng-show="registerForm.email.$dirty && registerForm.email.$invalid-pattern">illegal emaill</div>
                </p>
                <p>
                   password:
                </p>
                <p>
-                  <input type="password" name="password" id="" class="form-control" ng-model="registerCtrl.registerForm.password"  ng-blur="registerCtrl.checkExist()">
+                  <input type="password" class="form-control" name="password" ng-model="registerCtrl.registerFormObj.password" />
                   
-                  <password-strength-bar></password-strength-bar>
+                  <password-strength-bar strength="{{registerCtrl.getStrength()}}"></password-strength-bar>
                </p>
 
             </form>
