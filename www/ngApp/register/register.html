@@ -11,7 +11,7 @@
                   email:
                </p>
                <p>
-                  <input type="text" name="email" id="" class="form-control" ng-model="registerCtrl.registerForm.email" ng-pattern="/^\w+((.\w+)|(-\w+))@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/">
+                  <input type="text" name="email" id="" class="form-control" ng-model="registerCtrl.registerForm.email" ng-pattern="/^\w+((.\w+)|(-\w+))@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/" ng-blur="registerCtrl.checkExist()">
                   <div class="alert alert-danger" role="alert" ng-show="registerForm.email.$dirty && registerForm.email.$invalid-pattern">ilegal emaill</div>
                </p>
 
