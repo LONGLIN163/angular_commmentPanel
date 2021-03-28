@@ -19,7 +19,8 @@
                </p>
                <p>
                   <input type="password" name="password" id="" class="form-control" ng-model="registerCtrl.registerForm.password"  ng-blur="registerCtrl.checkExist()">
-                  <div class="alert alert-danger" role="alert" ng-show="registerForm.password.$dirty && registerForm.password.$invalid-pattern">ilegal emaill</div>
+                  
+                  <password-strength-bar></password-strength-bar>
                </p>
 
             </form>

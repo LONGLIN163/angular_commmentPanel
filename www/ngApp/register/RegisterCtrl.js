@@ -2,6 +2,7 @@
 define(function (require) {
     var app = require('app');
     require("./registerService");
+    require("../ngDirective/passwordStrengthBar");
     app.controller('RegisterCtrl', ["registerService","titleService",function (registerService,titleService) {
         this.registerForm={};
 
