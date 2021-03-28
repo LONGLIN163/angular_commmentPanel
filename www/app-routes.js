@@ -23,4 +23,25 @@ define(function (require) {
                 controller: 'RegisterCtrl as registerCtrl'
             })
     }]);
+
+    // ****************global service here*****************
+
+    app.controller("MainCtrl",["titleService",function(titleService){
+        this.getTitle=function(){
+           return titleService.getTitle();
+        }
+   }])
+
+   // controller title for each page
+   app.factory("titleService",function(){
+       var title="Home";
+       return {
+           getTitle:function(){
+               return title; 
+           },
+           setTitle:function(str){
+               title=str; 
+           } 
+       }
+   });
 });

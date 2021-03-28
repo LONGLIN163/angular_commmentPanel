@@ -2,8 +2,15 @@
 define(function (require) {
     var app = require('app');
     require("./registerService");
-    app.controller('RegisterCtrl', ["registerService",function (registerService) {
+    app.controller('RegisterCtrl', ["registerService","titleService",function (registerService,titleService) {
         this.registerForm={};
+
+        //change title here
+        titleService.setTitle("Register");
+        // this.getTitle=function(){
+        //     return titleService.getTitle();
+        //  }
+        
         var self=this;
         //check if the user is exist
         this.checkExist=function(){

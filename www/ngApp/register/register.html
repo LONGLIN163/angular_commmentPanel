@@ -12,7 +12,14 @@
                </p>
                <p>
                   <input type="text" name="email" id="" class="form-control" ng-model="registerCtrl.registerForm.email" ng-pattern="/^\w+((.\w+)|(-\w+))@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/" ng-blur="registerCtrl.checkExist()">
-                  <div class="alert alert-danger" role="alert" ng-show="registerForm.email.$dirty && registerForm.email.$invalid-pattern">ilegal emaill</div>
+                  <div class="alert alert-danger" role="alert" ng-show="registerForm.email.$dirty && registerForm.email.$invalid-pattern">illegal emaill</div>
+               </p>
+               <p>
+                  password:
+               </p>
+               <p>
+                  <input type="password" name="password" id="" class="form-control" ng-model="registerCtrl.registerForm.password"  ng-blur="registerCtrl.checkExist()">
+                  <div class="alert alert-danger" role="alert" ng-show="registerForm.password.$dirty && registerForm.password.$invalid-pattern">ilegal emaill</div>
                </p>
 
             </form>
