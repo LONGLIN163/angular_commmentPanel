@@ -8,20 +8,31 @@
             <form name="registerForm">
 
                <p>
-                  email:
+                  Email:
                </p>
                <p>
-                  <input type="text" name="email" id="" class="form-control" ng-model="registerCtrl.registerFormObj.email" ng-pattern="/^\w+((.\w+)|(-\w+))@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/" ng-blur="registerCtrl.checkExist()">
-                  <div class="alert alert-danger" role="alert" ng-show="registerForm.email.$dirty && registerForm.email.$invalid-pattern">illegal emaill</div>
+                  <input type="text" required name="email" id="" class="form-control" ng-model="registerCtrl.registerFormObj.email" ng-pattern="/^\w+((.\w+)|(-\w+))@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/" ng-blur="registerCtrl.checkExist()">
+                  <div class="alert alert-danger" role="alert" ng-show="registerForm.email.$dirty && registerForm.email.$invalid-pattern">Illegal emaill</div>
                </p>
                <p>
-                  password:
+                  Password:
                </p>
                <p>
-                  <input type="password" class="form-control" name="password" ng-model="registerCtrl.registerFormObj.password" />
-                  
+                  <input type="password" required class="form-control" name="password" ng-model="registerCtrl.registerFormObj.password" />
+                  <div class="alert alert-danger" role="alert" ng-show="registerForm.password.$dirty && registerCtrl.passwordStrength<2">The strength is not enought strong, at least level 3!</div>
                   <password-strength-bar strength="{{registerCtrl.getStrength()}}"></password-strength-bar>
                </p>
+               <p>
+                  Confirm password:
+               </p>
+               <p>
+                  <input type="password2" required class="form-control" name="password2" ng-model="registerCtrl.registerFormObj.password2" />
+                  <div class="alert alert-danger" role="alert" ng-show="registerForm.password2.$dirty && registerCtrl.registerFormObj.password!=registerCtrl.registerFormObj.password2">Two times passwords input different!</div>
+               </p>
+               <p>
+                  <input type="button" value="submit" class="btn btn-success" ng-disabled="registerForm.$invalid || registerCtrl.passwordStrength<2 || registerCtrl.registerFormObj.password!=registerCtrl.registerFormObj.password2">
+               </p>
+
 
             </form>
          </div>

@@ -31,6 +31,8 @@ define(function (require) {
 
         }
 
+        self.passwordStrength=0;
+
         this.getStrength = function(){
             var password = self.registerFormObj.password;
             var lv = 0;
@@ -46,7 +48,8 @@ define(function (require) {
             }
 
             console.log(lv)
-            return lv;
+            self.passwordStrength=lv;
+            return self.passwordStrength;
         }
     }]);
 });
