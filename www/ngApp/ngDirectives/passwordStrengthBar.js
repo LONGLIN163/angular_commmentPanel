@@ -7,7 +7,7 @@ define(function(require){
 				"strength" : "@"
 			},
             restrict:"E",
-            templateUrl: 'ngApp/ngDirective/passwordStrengthBar.html',
+            templateUrl: 'ngApp/ngDirectives/passwordStrengthBar.html',
             link: function($scope,ele) {
               //scope.strength = 2;//0-5
 

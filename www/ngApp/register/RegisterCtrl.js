@@ -2,12 +2,15 @@
 define(function (require) {
     var app = require('app');
     require("./registerService");
-    require("../ngDirective/passwordStrengthBar");
-    app.controller('RegisterCtrl', ["registerService","titleService",function (registerService,titleService) {
+    require("../ngDirectives/passwordStrengthBar");
+    require("../ngServices/passwordStrengthService");
+    app.controller('RegisterCtrl', ["registerService","titleService","passwordStrengthService",function (registerService,titleService,passwordStrengthService) {
 
         this.registerFormObj = {
-            password : ""
-        };
+            email : "",
+            password : "",
+            password2 : ""
+         };
 
         //change title here
         titleService.setTitle("Register");
@@ -16,40 +19,38 @@ define(function (require) {
         //  }
         
         var self=this;
+        self.showEmailErrTip=false;
+        self.emailErrTip="";
+
         //check if the user is exist
-        this.checkExist=function(){
-            console.log("email:"+email);
-            var email=self.registerFormObj.email;
-            if(email!=undefined){
-                //let registerService to do the dirty work.
-                registerService.checkEmailExist(email,function(data){
-                    if(data == -1){
-                        self.isExit = true;
-                    }
-                })
-            }
+        //console.log("***",registerForm);//********we can get this form obj here*********
+        this.checkEmail=function(){          
+            //console.log(registerForm.email.$invalid)
+            self.showEmailErrTip=angular.element(registerForm.email).hasClass("ng-invalid-pattern")
+            console.log(self.showEmailErrTip)
+            self.emailErrTip="illegal email, it has to be a standard email fomat!";
 
         }
 
         self.passwordStrength=0;
-
-        this.getStrength = function(){
-            var password = self.registerFormObj.password;
-            var lv = 0;
-            if(password.match(/[a-z]/g)){lv++;}
-            if(password.match(/[0-9]/g)){lv++;}
-            if(password.match(/[A-Z]/g)){lv++;}
-            if(password.match(/(.[^a-z0-9A-Z])/g)){lv++;}
-            if(password.length < 6){
-                lv = 0;
-            }
-            if(lv > 4){
-                lv = 4;
-            }
-
-            console.log(lv)
-            self.passwordStrength=lv;
+        self.showPwdStrengthErrTip=false;
+        this.checkIfPwdWeak=function(){ 
+            self.showPwdStrengthErrTip=self.getStrength()<2;
+        }
+        this.getStrength =function(){
+            self.passwordStrength=passwordStrengthService.getPwdStrength(self.registerFormObj.password);
             return self.passwordStrength;
+        }
+
+        self.showDiffPwdTip=false;
+        this.checkIfDiffPwd=function(){
+            if(self.registerFormObj.password!="" && self.registerFormObj.password2!=""){
+                if(self.registerFormObj.password!=self.registerFormObj.password2){
+                    self.showDiffPwdTip=true;
+                }else{
+                    self.showDiffPwdTip=false;
+                }
+            }
         }
     }]);
 });
