@@ -1,6 +1,7 @@
 var express=require("express");
 var mongoose=require("mongoose");
 var session=require("express-session");
+var routCtrl=require("./controllers/routCtrl")
 
 //Create express app obj
 var app = express();
@@ -21,6 +22,10 @@ app.use(session({
 	resave: false ,  
 	saveUninitialized : true
   }))
+
+//routers
+app.post("/checkExist",routCtrl.checkExist); 
+app.post("/user",routCtrl.doRegister); 
 
 //staticize a folder
 app.use(express.static('www'))

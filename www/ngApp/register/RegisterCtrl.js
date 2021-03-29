@@ -21,15 +21,34 @@ define(function (require) {
         var self=this;
         self.showEmailErrTip=false;
         self.emailErrTip="";
+        self.emailErrTipClass="";
 
         //check if the user is exist
         //console.log("***",registerForm);//********we can get this form obj here*********
-        this.checkEmail=function(){          
-            //console.log(registerForm.email.$invalid)
-            self.showEmailErrTip=angular.element(registerForm.email).hasClass("ng-invalid-pattern")
-            console.log(self.showEmailErrTip)
-            self.emailErrTip="illegal email, it has to be a standard email fomat!";
-
+        this.checkEmail=function(){
+            //step1 : we need to check if it pass the regexp rule
+            if(self.showEmailErrTip=angular.element(registerForm.email).hasClass("ng-invalid-pattern")){
+                //console.log(self.showEmailErrTip)
+                self.emailErrTip="Illegal email, it has to be a standard email fomat!";
+                self.emailErrTipClass="alert-danger";
+                return;
+            }
+            
+            // step2 : check if this email is exist in db
+            registerService.checkEmailExist({"email":self.registerFormObj.email},function(data){
+                    //console.log(data)
+                    var isExist=data.data.result; 
+                    //console.log(isExist)
+                    if(isExist){ 
+                       self.showEmailErrTip=true;
+                       self.emailErrTip="Congrat, u can use this email!";
+                       self.emailErrTipClass="alert-success";
+                    }else{
+                        self.showEmailErrTip=true;
+                        self.emailErrTip="Sorry, this email has been used!";
+                        self.emailErrTipClass="alert-danger";
+                    }
+            }); 
         }
 
         self.passwordStrength=0;
@@ -51,6 +70,18 @@ define(function (require) {
                     self.showDiffPwdTip=false;
                 }
             }
+        }
+
+
+        this.doRegister=function(){
+            registerService.doUserRegister(self.registerFormObj.email,self.registerFormObj.password,function(data){
+                console.log(data)
+                if(data.data.result==1){
+                    alert("Register success!!!");
+                }else{
+                    alert("Register fail!!!");
+                }
+            })
         }
     }]);
 });

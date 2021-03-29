@@ -11,14 +11,14 @@
                   Email:
                </p>
                <p>
-                  <input type="text" required name="email" id="" class="form-control" ng-model="registerCtrl.registerFormObj.email" ng-pattern="/^\w+((.\w+)|(-\w+))@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/" ng-blur="registerCtrl.checkEmail()">
-                    <div class="alert alert-danger" role="alert" ng-show="registerCtrl.showEmailErrTip">{{registerCtrl.emailErrTip}}</div>
+                  <input type="text" required name="email" id="" class="form-control" ng-model="registerCtrl.registerFormObj.email" ng-pattern="/^\w+((.\w+)|(-\w+))@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/" ng-blur="registerCtrl.checkEmail()" ng-focus="registerCtrl.showEmailErrTip=false">
+                  <div class="alert {{registerCtrl.emailErrTipClass}}" role="alert" ng-show="registerCtrl.showEmailErrTip">{{registerCtrl.emailErrTip}}</div>
                </p>
                <p>
                   Password:
-               </p>
+               </p
                <p>
-                  <input type="password" required class="form-control" name="password" ng-model="registerCtrl.registerFormObj.password" ng-blur="registerCtrl.checkIfPwdWeak()" ng-focus="registerCtrl.showPwdStrengthErrTip=false" />
+                  <input type="password" required class="form-control" name="password" ng-model="registerCtrl.registerFormObj.password" ng-blur="registerCtrl.checkIfPwdWeak(); registerCtrl.checkIfDiffPwd()" ng-focus="registerCtrl.showPwdStrengthErrTip=false" />
                   <div class="alert alert-danger" role="alert" ng-show="registerCtrl.showPwdStrengthErrTip">The strength is not enought strong, at least level 3!</div>
                   <password-strength-bar strength="{{registerCtrl.getStrength()}}"></password-strength-bar>
                </p>
@@ -31,7 +31,7 @@
                </p>
 
                <p>
-                  <input type="button" value="submit" class="btn btn-success" ng-disabled="registerForm.$invalid || registerCtrl.passwordStrength<2 || registerCtrl.registerFormObj.password!=registerCtrl.registerFormObj.password2">
+                  <input type="button" value="submit" class="btn btn-success" ng-disabled="registerForm.$invalid || registerCtrl.passwordStrength<2 || registerCtrl.registerFormObj.password!=registerCtrl.registerFormObj.password2" ng-click="registerCtrl.doRegister()">
                </p>
 
 
