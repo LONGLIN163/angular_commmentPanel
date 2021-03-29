@@ -4,7 +4,12 @@ define(function (require) {
     require("./registerService");
     require("../ngDirectives/passwordStrengthBar");
     require("../ngServices/passwordStrengthService");
-    app.controller('RegisterCtrl', ["registerService","titleService","passwordStrengthService",function (registerService,titleService,passwordStrengthService) {
+    app.controller('RegisterCtrl', [
+        "registerService",
+        "titleService",
+        "passwordStrengthService",
+        "$state",
+        function (registerService,titleService,passwordStrengthService,$state) {
 
         this.registerFormObj = {
             email : "",
@@ -26,6 +31,7 @@ define(function (require) {
         //check if the user is exist
         //console.log("***",registerForm);//********we can get this form obj here*********
         this.checkEmail=function(){
+            if(self.registerFormObj.email=="") return; 
             //step1 : we need to check if it pass the regexp rule
             if(self.showEmailErrTip=angular.element(registerForm.email).hasClass("ng-invalid-pattern")){
                 //console.log(self.showEmailErrTip)
@@ -78,6 +84,7 @@ define(function (require) {
                 console.log(data)
                 if(data.data.result==1){
                     alert("Register success!!!");
+                    $state.go("root.home");// after Register, go to home directly
                 }else{
                     alert("Register fail!!!");
                 }
