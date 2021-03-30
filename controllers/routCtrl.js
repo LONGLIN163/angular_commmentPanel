@@ -101,3 +101,24 @@ exports.login=function(req,res){
         })
     })
 }
+
+exports.profile=function(req,res){
+    if(!req.session.login){
+        res.json({
+            "result":-1,
+            "err":"For access this page, you have to login."
+        })
+        return;
+   }
+
+   var email=req.session.email;
+   //console.log(email)
+   User.find({"email":email},function(err,results){
+       res.json({
+           "email":results[0].email,
+           "nickname":results[0].nickname || "No nickname!",
+           "photo":results[0].photo || "/images/person.jpg",
+           "signature":results[0].signature || "This guy is lazy and has nothing left!"
+       });
+   })
+}

@@ -20,19 +20,19 @@
                Email:
             </p>
             <p>
-               <input type="email" name="" class="form-control" disabled>
+               <input type="email" name="" class="form-control" disabled ng-model="profilectrl.formObj.email">
             </p>
             <p>
                Nickname:
             </p>
             <p>
-               <input type="text" name="" class="form-control" disabled>
+               <input type="text" name="" class="form-control" disabled ng-model="profilectrl.formObj.nickname">
             </p>
             <p>
                Signature:
             </p>
             <p>
-               <input type="text" name="" class="form-control" disabled>
+               <input type="text" name="" class="form-control" disabled ng-model="profilectrl.formObj.signature">
             </p>
             <p>
                Photo:
@@ -44,7 +44,6 @@
             <p>
                <input type="button" value="Confirm" class="btn btn-success" ng-click="profilectrl.save()">
             </p>
-
          </form>
          </div>
         <div ng-if="profilectrl.idx==1">
