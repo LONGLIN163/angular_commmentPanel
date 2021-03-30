@@ -1,0 +1,63 @@
+<div class="container">
+   <h1>Modify your Profile:</h1>
+   <hr>
+
+   <div>
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs">
+        <!-- <li class=" {{profilectrl.idx}}==0 ? active :'' "><a>Basic info</a></li> -->
+        <li class="{{profilectrl.idx==0 ? 'active' :''}}"><a ng-click="profilectrl.changeTab(0)">Basic info</a></li>
+        <li class="{{profilectrl.idx==1 ? 'active' :''}}"><a ng-click="profilectrl.changeTab(1)">Password</a></li>
+      </ul>
+    
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div ng-if="profilectrl.idx==0">
+         {{loginctrl.loginFormObj}}
+         <form name="loginForm">
+            <p>
+               Email:
+            </p>
+            <p>
+               <input type="email" name="" class="form-control" disabled>
+            </p>
+            <p>
+               Nickname:
+            </p>
+            <p>
+               <input type="text" name="" class="form-control" disabled>
+            </p>
+            <p>
+               Signature:
+            </p>
+            <p>
+               <input type="text" name="" class="form-control" disabled>
+            </p>
+            <p>
+               Photo:
+            </p>
+            <p>
+               <img src="/images/person.jpg" alt="">
+               <input type="file" name="" id="" value="upload image">
+            </p>
+            <p>
+               <input type="button" value="Confirm" class="btn btn-success" ng-click="profilectrl.save()">
+            </p>
+
+         </form>
+         </div>
+        <div ng-if="profilectrl.idx==1">
+           2
+         </div>
+      </div>
+    
+    </div>
+
+   <div class="row">
+      <div class="col-lg-6">
+      </div>
+   </div>
+</div>
+
+magick personOri.jpg -resize 100x100  person.jpg
