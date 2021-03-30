@@ -24,11 +24,12 @@ app.use(session({
   }))
 
 //routers
-app.post("/checkExist",routCtrl.checkExist); 
-app.post("/user",routCtrl.doRegister); 
+app.post("/checkExist" ,routCtrl.checkExist); 
+app.post("/user"       ,routCtrl.doRegister); 
+app.get("/checkLogin"  ,routCtrl.checkLogin); 
 
 //staticize a folder
-app.use(express.static('www'))
+app.use(express.static('www')) 
 
 //if page missing 
 app.use(function(req,res){

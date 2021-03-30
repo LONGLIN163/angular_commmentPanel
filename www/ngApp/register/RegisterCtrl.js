@@ -9,7 +9,8 @@ define(function (require) {
         "titleService",
         "passwordStrengthService",
         "$state",
-        function (registerService,titleService,passwordStrengthService,$state) {
+        "loginService",
+        function (registerService,titleService,passwordStrengthService,$state,loginService) {
 
         this.registerFormObj = {
             email : "",
@@ -85,6 +86,10 @@ define(function (require) {
                 if(data.data.result==1){
                     alert("Register success!!!");
                     $state.go("root.home");// after Register, go to home directly
+                    // ******then change login status, but it s wrong,we should let the front end decide if we v logged in.
+                    //loginService.changeLogin(true);
+                    //****so we need to make service to change the login status. it know it
+                    loginService.changeLogin();
                 }else{
                     alert("Register fail!!!");
                 }

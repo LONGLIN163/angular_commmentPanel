@@ -52,3 +52,12 @@ exports.doRegister=function(req,res){
         });
     })
 }
+
+
+exports.checkLogin=function(req,res){
+    if(req.session.login){
+         res.json({"login":true,"email":req.session.email})
+    }else{
+        res.json({"login":false})
+    }
+}

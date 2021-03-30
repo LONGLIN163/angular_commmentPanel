@@ -18,10 +18,18 @@
               <li ui-sref-active="active"><a ui-sref="root.home">home</a></li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" ng-if="!rootctrl.isLogin()">
               <li ui-sref-active="active"><a ui-sref="root.login">Login</a></li>
               <li ui-sref-active="active"><a ui-sref="root.register">Register</a></li>
             </ul>
+
+            <ul class="nav navbar-nav navbar-right" ng-if="rootctrl.isLogin()">
+              <li ui-sref-active="active"><a>Wellcome***, you have logged in.</a></li>
+              <li ui-sref-active="active"><a>Personal Information</a></li>
+              <li ui-sref-active="active"><a>Logout</a></li>
+            </ul>
+
+
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
