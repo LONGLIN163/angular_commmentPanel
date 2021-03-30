@@ -27,6 +27,7 @@ app.use(session({
 app.post("/checkExist" ,routCtrl.checkExist); 
 app.post("/user"       ,routCtrl.doRegister); 
 app.get("/checkLogin"  ,routCtrl.checkLogin); 
+app.post("/login"      ,routCtrl.login); 
 
 //staticize a folder
 app.use(express.static('www')) 

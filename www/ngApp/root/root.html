@@ -24,7 +24,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right" ng-if="rootctrl.isLogin()">
-              <li ui-sref-active="active"><a>Wellcome***, you have logged in.</a></li>
+              <li ui-sref-active="active"><a>Wellcome{{rootctrl.getNickname()}}( {{rootctrl.getEmail()}} )</a></li>
               <li ui-sref-active="active"><a>Personal Information</a></li>
               <li ui-sref-active="active"><a>Logout</a></li>
             </ul>

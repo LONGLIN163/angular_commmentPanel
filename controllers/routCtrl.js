@@ -56,8 +56,48 @@ exports.doRegister=function(req,res){
 
 exports.checkLogin=function(req,res){
     if(req.session.login){
-         res.json({"login":true,"email":req.session.email})
+         res.json({
+             "login":true,
+             "email":req.session.email,
+             "nickname":req.session.nickname || "no nickname"
+            })
     }else{
         res.json({"login":false})
     }
+}
+
+exports.login=function(req,res){
+    var form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files) {
+        if(err){
+            res.json({"result":-1});//-1: server error
+            return;
+        }
+        var email=fields.email;
+        //console.log(email)
+        User.find({"email":email},function(err,results){
+            if(err){
+                res.json({"result":-1});//-1: server error
+                return;
+            }
+            if(results.length==0){
+                res.json({"result":-2});//-1: no such user
+                return;
+            }
+
+            //then check if password is correct
+            var password=crypto.createHash("sha256").update(fields.password).digest("hex");
+            if(password===results[0].password){
+                //if success, send session
+                req.session.login=true;
+                req.session.email=email;
+                req.session.nickname=results[0].nickname;
+                res.json({"result":1});//1: login success
+                return;
+            }else{
+                res.json({"result":-3});//-3: password incorrect
+            }
+
+        })
+    })
 }

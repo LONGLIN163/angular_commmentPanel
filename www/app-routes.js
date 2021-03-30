@@ -22,6 +22,12 @@ define(function (require) {
                 controllerUrl: 'ngApp/register/RegisterCtrl',
                 controller: 'RegisterCtrl as registerCtrl'
             })
+            .state('root.login', {
+                url: '/login',
+                templateUrl: 'ngApp/login/login.html',
+                controllerUrl: 'ngApp/login/LoginCtrl',
+                controller: 'LoginCtrl as loginctrl'
+            })
     }]);
 
     // ****************global service here*****************

@@ -1,0 +1,33 @@
+<div>
+   <div class="container">
+      <h1>Login:</h1>
+      <hr>
+      <div class="row">
+         <div class="col-lg-6">
+            {{loginctrl.loginFormObj}}
+            <form name="loginForm">
+               <p>
+                  Email:
+               </p>
+               <p>
+                  <input type="text" required name="email" id="" class="form-control" ng-model="loginctrl.loginFormObj.email" ng-pattern="/^\w+((.\w+)|(-\w+))@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/" ng-blur="LoginCtrl.checkEmail()" ng-focus="registerCtrl.showEmailErrTip=false">
+                  <div class="alert alert-danger" role="alert" ng-show="loginForm.email.$invalid && loginForm.email.$dirty" >Email fomat illegal!</div>
+               </p>
+               <p>
+                  Password:
+               </p>
+               <p>
+                  <input type="password" required class="form-control" name="password" ng-model="loginctrl.loginFormObj.password" ng-focus="loginctrl.showErrTip=false"/>
+                  <div class="alert alert-danger" role="alert" ng-show="loginctrl.showErrTip">{{loginctrl.errTip}}</div>
+               </p>
+               <p>
+                  <input type="button" value="Login" class="btn btn-success" ng-click="loginctrl.login()">
+               </p>
+
+            </form>
+         </div>
+      </div>
+      </div>
+
+   </div>
+</div>

@@ -2,6 +2,8 @@ define(function(){
     var app=require("app");
     app.factory("loginService",["$http",function($http){
         var isLogin=false;
+        var nickname="";
+        var email="";
 
         // function changeLogin(loginBoolean){
         //     isLogin=loginBoolean;
@@ -11,10 +13,20 @@ define(function(){
 
         //
 
-        function changeLogin(){
+        function checkLogin(){
             $http.get("/checkLogin").then(function(data){
                 isLogin=data.data.login;
+                nickname=data.data.nickname;
+                email=data.data.email;
             })
+        }
+
+        function getNickname(){
+            return nickname;
+        }
+
+        function getEmail(){
+            return email;
         }
 
         function getLogin(){
@@ -22,8 +34,10 @@ define(function(){
         }
 
         return{
-            changeLogin:changeLogin,
-            getLogin:getLogin
+            checkLogin:checkLogin,
+            getLogin:getLogin,
+            getNickname:getNickname,
+            getEmail:getEmail
         }
     }])
 })

@@ -89,7 +89,7 @@ define(function (require) {
                     // ******then change login status, but it s wrong,we should let the front end decide if we v logged in.
                     //loginService.changeLogin(true);
                     //****so we need to make service to change the login status. it know it
-                    loginService.changeLogin();
+                    loginService.checkLogin();
                 }else{
                     alert("Register fail!!!");
                 }
