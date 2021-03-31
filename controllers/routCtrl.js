@@ -2,6 +2,7 @@
 var formidable = require('formidable');
 var User = require("../models/User");
 var crypto=require("crypto")
+var gm=require("gm");
 
 exports.checkExist=function(req,res){
 
@@ -127,6 +128,12 @@ exports.upload=function(req,res){
     var form = new formidable.IncomingForm();
     form.uploadDir = "./www/uploads";
     form.parse(req, function (err, fields, files) {
+        // We need to limit pic not less than 100px both in width and height.
+        // use gm to get image height and width
+        gm(files.file.path).size(function (err, size) {
+            if (!err)
+                console.log(size.width > size.height ? 'wider' : 'taller than you');
+            });
        res.json(files);
     });
 }
