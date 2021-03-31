@@ -69,3 +69,10 @@ header nav :active{
 	border-radius: 10px;
 	padding: 20px;
 }
+
+.mask_close{
+    position: absolute;
+    right:20px;
+    top: 20px;
+    font-size: 20px;
+}
