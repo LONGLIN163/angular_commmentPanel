@@ -29,6 +29,7 @@ app.post("/user"       ,routCtrl.doRegister);
 app.get("/checkLogin"  ,routCtrl.checkLogin); 
 app.post("/login"      ,routCtrl.login); 
 app.get("/profile"     ,routCtrl.profile); 
+app.post("/upload"     ,routCtrl.upload); 
 
 //staticize a folder
 app.use(express.static('www')) 

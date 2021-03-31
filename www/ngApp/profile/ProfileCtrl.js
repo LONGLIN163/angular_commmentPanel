@@ -24,12 +24,11 @@ define(function (require) {
 
         this.uploader = new FileUploader({
             url :"/upload",
-
             filters: [{
                 name: 'yourName1',
                 // A user-defined filter
                 fn: function(item) {
-                    console.log(item)
+                    //console.log(item)
                     var type=item.type.slice(item.type.lastIndexOf("/")+1)
                     //console.log(type)
                     //console.log("|jpg|jpeg|png|bmp|gif|".indexOf(type)!==-1)
@@ -49,13 +48,12 @@ define(function (require) {
                 //this.clearQueue();//*****incorrect***** */
                 self.uploader.clearQueue();
                 $("#imgFile").val("");
-                return;
             },
-            onCompleteAll:function(){
-                alert("Upload success!")
+            onCompleteItem :function(item, response, status, headers){
+                //console.log(response) 
+
                 self.uploader.clearQueue();
                 $("#imgFile").val("");
-                return;
             }
 
 

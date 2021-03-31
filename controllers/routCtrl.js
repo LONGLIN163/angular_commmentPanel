@@ -122,3 +122,11 @@ exports.profile=function(req,res){
        });
    })
 }
+
+exports.upload=function(req,res){
+    var form = new formidable.IncomingForm();
+    form.uploadDir = "./www/uploads";
+    form.parse(req, function (err, fields, files) {
+       res.json(files);
+    });
+}
