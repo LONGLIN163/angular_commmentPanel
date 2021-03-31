@@ -45,7 +45,7 @@ define(function (require) {
             onAfterAddingFile:function(item){
                //console.log(item)
                //console.log(item.file.size)
-               if(item.file.size>200*1024){
+               if(item.file.size>500*1024){
                    alert("Please upload a image smaller than 200kb")
                }
                item.upload();
@@ -60,17 +60,17 @@ define(function (require) {
                 //console.log(response) 
                 //after upload success, show cutting board
                 self.showCuttingBoard=true;
-                //var str=response.file.path.substr(4);//remove www
-                //self.imgSrc=str;
-                //console.log("-----",self.imgSrc)
+                var str=response.file.path.substr(4);//remove www
+                self.imgSrc=str;
+                console.log("-----",self.imgSrc)
 
                 //***play with $compile***
                 // $(".mask_profile .inner_box").append($compile('<cut-pic img="{{profilectrl.getImgSrc()}}" v="profilectrl.v" maxwidth="600" maxheight="400" ></cut-pic>'));
                 // angular.element($(".mask_profile .inner_box")).append($compile("<my-angular-directive />")($scope));
-                var compileFn = $compile('<cut-pic img="" v="profilectrl.v" maxwidth="600" maxheight="400" ></cut-pic>');
-                var $dom = compileFn($scope);
+                //var compileFn = $compile('<cut-pic img="" v="profilectrl.v" maxwidth="600" maxheight="400" ></cut-pic>');
+                //var $dom = compileFn($scope);
                 //console.log($dom)
-                angular.element(document.getElementById("inner_box")).append($dom);
+                //angular.element(document.getElementById("inner_box")).append($dom);
 
                 self.uploader.clearQueue();
                 $("#imgFile").val("");
