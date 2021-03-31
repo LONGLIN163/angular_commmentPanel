@@ -48,3 +48,24 @@ header nav :active{
 .tab-content div{
     padding-top: 20px;
 }
+
+.mask_profile{
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.inner_box{
+	position: fixed;
+	top: 50%;
+	left:50%;
+	width: 850px;
+	height: 480px;
+	background-color: white;
+	transform:translate(-50%,-50%);
+	border-radius: 10px;
+	padding: 20px;
+}

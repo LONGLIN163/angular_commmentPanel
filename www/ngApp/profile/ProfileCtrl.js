@@ -3,6 +3,7 @@ define(function (require) {
     var app = require('app');
     require("jquery"); 
     require("jquery-ui");
+    require("../ngDirectives/cut-pic");
     app.controller('ProfileCtrl', [
         'titleService',
         '$http',
@@ -56,8 +57,9 @@ define(function (require) {
                 $("#imgFile").val("");
             }
 
-
         });
+
+        this.v = {"w" : 0 , "h" : 0 , "x" : 0 , "y" : 0};
         
     }]);
 });
