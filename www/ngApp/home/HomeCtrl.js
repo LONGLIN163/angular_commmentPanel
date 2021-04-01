@@ -3,12 +3,29 @@ define(function (require) {
     var app = require('app');
     require("jquery"); 
     require("jquery-ui");
-    app.controller('HomeCtrl', ['titleService', function (titleService) {
+    require("../ngServices/loginService")
+    app.controller('HomeCtrl', ['titleService','loginService', function (titleService,loginService) {
         titleService.setTitle("Home");
-        this.a="home here";
-        $(".box").animate({"font-size":100},1000,function(){
-            $(this).css("color","red");
-            $(this).draggable();
-        }) //jquery need write inside controller
-    }]);
+
+        loginService.checkLogin();
+
+        this.getNickname=function(){
+            return loginService.getNickname();
+        }
+        this.getEmail=function(){
+            return loginService.getEmail();
+        }
+
+        this.getPhoto=function(){
+            return loginService.getPhoto();
+        }
+
+        this.postComment=function(e){
+              console.log(e)
+              if(e.keyCode==13){
+                  alert("ok")
+              }
+        }
+
+    }]); 
 });

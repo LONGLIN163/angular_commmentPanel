@@ -18,7 +18,7 @@ mongoose.connect('mongodb://localhost/myangulardb', {//********back up**********
 //Use session
 app.use(session({
 	secret: 'shuoshuo', 
-	cookie: { maxAge: 1000 * 60 * 20 },
+	cookie: { maxAge: 1000 * 60 * 30 },
 	resave: false ,  
 	saveUninitialized : true
   }))

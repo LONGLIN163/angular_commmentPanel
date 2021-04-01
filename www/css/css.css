@@ -92,3 +92,20 @@ header nav :active{
     top: 5px;
     border-radius: 50%;
 }
+
+.jumbotron{
+    position: relative;
+}
+
+.jumbotron h3{
+    padding-left: 70px;
+}
+
+.jumbotron img{
+    position: absolute;
+    top: 55px;
+    left: 75px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}

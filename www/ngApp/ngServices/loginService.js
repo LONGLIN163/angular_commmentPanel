@@ -4,6 +4,7 @@ define(function(){
         var isLogin=false;
         var nickname="";
         var email="";
+        var photo="";
 
         // function changeLogin(loginBoolean){
         //     isLogin=loginBoolean;
