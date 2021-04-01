@@ -49,6 +49,7 @@ exports.doRegister=function(req,res){
                 // if success, send session to the user
                 req.session.login=true;
                 req.session.email=email;
+                req.session.photo="";
                 res.json({"result":1});//1: save into database
             }
         });
@@ -61,7 +62,8 @@ exports.checkLogin=function(req,res){
          res.json({
              "login":true,
              "email":req.session.email,
-             "nickname":req.session.nickname || "no nickname"
+             "nickname":req.session.nickname || "no nickname",
+             "photo":req.session.photo || "/images/person.jpg"
             })
     }else{
         res.json({"login":false})
@@ -94,6 +96,7 @@ exports.login=function(req,res){
                 req.session.login=true;
                 req.session.email=email;
                 req.session.nickname=results[0].nickname;
+                req.session.photo=results[0].photo;
                 res.json({"result":1});//1: login success
                 return;
             }else{
@@ -116,6 +119,7 @@ exports.profile=function(req,res){
    var email=req.session.email;
    //console.log(email)
    User.find({"email":email},function(err,results){
+       
        res.json({
            "email":results[0].email,
            "nickname":results[0].nickname || "No nickname!",
@@ -157,6 +161,7 @@ exports.cut=function(req,res){
         console.log(imgUrl)
 
         gm("./"+imgUrl).crop(w,h,x,y).resize(100,100,"!").write("./"+imgUrl,function(){
+            req.session.photo=imgUrl.substr(4);
             res.json({"result": 1})
         });
 

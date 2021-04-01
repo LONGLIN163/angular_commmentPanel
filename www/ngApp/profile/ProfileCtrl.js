@@ -126,17 +126,17 @@ define(function (require) {
                //*********use ?ueryString to prevent to read saved cache****************
 
                self.formObj.photo=self.strCut.substr(4)+"?"+Date.parse(new Date());
-
+               console.log("1---",self.formObj.photo)
             })
         }
 
-        this.formObj={
+        self.formObj={
             "photo":"/images/person.jpg"
         };
         //get the head photo
         this.getPhoto=function(){
-            console.log("2---",this.formObj.photo)
-            return this.formObj.photo;
+            console.log("2---",self.formObj.photo)
+            return self.formObj.photo;
         }
         
     }]);

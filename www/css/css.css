@@ -83,3 +83,12 @@ header nav :active{
     right: 10px;
     padding: 5px 10px;
 }
+
+.header_photo{
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    left: -40px;
+    top: 5px;
+    border-radius: 50%;
+}

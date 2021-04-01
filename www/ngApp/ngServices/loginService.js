@@ -9,15 +9,14 @@ define(function(){
         //     isLogin=loginBoolean;
         // }
         // ******then change login status, but it s wrong,we should let the front end decide if we v logged in.
-        // ****so we need to make service to change the login status. it know it
-
+        // ****so we need to make service to change the login status. it knows it
         //
-
         function checkLogin(){
             $http.get("/checkLogin").then(function(data){
                 isLogin=data.data.login;
                 nickname=data.data.nickname;
                 email=data.data.email;
+                photo=data.data.photo;
             })
         }
 
@@ -33,11 +32,16 @@ define(function(){
             return isLogin;
         }
 
+        function getPhoto(){
+            return photo;
+        }
+
         return{
             checkLogin:checkLogin,
             getLogin:getLogin,
             getNickname:getNickname,
-            getEmail:getEmail
+            getEmail: getEmail,
+            getPhoto: getPhoto
         }
     }])
 })

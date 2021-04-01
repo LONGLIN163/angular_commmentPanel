@@ -13,6 +13,11 @@ define(function (require) {
         this.getEmail=function(){
             return loginService.getEmail();
         }
+
+        this.getPhoto=function(){
+            return loginService.getPhoto();
+        }
+
         // databinding to the tag
         this.isLogin=function(){
            
