@@ -4,6 +4,7 @@ var User = require("../models/User");
 var crypto=require("crypto")
 var gm=require("gm");
 var url=require("url");
+var Comment=require("../models/Comment");
 
 exports.checkExist=function(req,res){
 
@@ -165,4 +166,37 @@ exports.cut=function(req,res){
             res.json({"result": 1})
         });
 
+}
+
+
+exports.publishComment=function(req,res){
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+        if(err){
+            res.json({"result":-1})//server error
+        }
+
+        //Comment
+        var email=  req.session.email;
+        var content=  fields.content;
+        var date=  new Date();
+
+        console.log("content:",content)
+
+        var c=new Comment({
+            email:email,
+            content:content,
+            date:date
+        });
+
+        c.save(function(err){
+            if(err){
+                res.json({"result":-1});//-1: server error
+                return;
+            }else{
+                res.json({"result":1});//1: save into database
+            }
+        });
+
+    });
 }

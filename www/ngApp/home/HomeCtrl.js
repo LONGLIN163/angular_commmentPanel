@@ -4,7 +4,10 @@ define(function (require) {
     require("jquery"); 
     require("jquery-ui");
     require("../ngServices/loginService")
-    app.controller('HomeCtrl', ['titleService','loginService', function (titleService,loginService) {
+    app.controller('HomeCtrl', ['titleService','loginService','$http' ,function (titleService,loginService,$http) {
+
+        var self=this;
+
         titleService.setTitle("Home");
 
         loginService.checkLogin();
@@ -21,10 +24,20 @@ define(function (require) {
         }
 
         this.postComment=function(e){
-              console.log(e)
+              //console.log(e)
               if(e.keyCode==13){
-                  alert("ok")
+                  //alert("ok")
+                  if(/(<([^>]+)>)/.test(self.content)){
+                      alert("Html tags not allowed!!!")
+                      return;
+                  }
+                  $http.post("/comment",{
+                      "content":self.content
+                  }).then(function(data){
+                      console.log(data.data.result)
+                  })
               }
+
         }
 
     }]); 

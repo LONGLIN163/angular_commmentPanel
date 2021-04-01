@@ -32,6 +32,8 @@ app.get("/profile"     ,routCtrl.profile);
 app.post("/upload"     ,routCtrl.upload); 
 app.get("/cut"         ,routCtrl.cut); 
 
+app.post("/comment"    ,routCtrl.publishComment); 
+
 //staticize a folder
 app.use(express.static('www')) 
 
