@@ -58,11 +58,26 @@ define(function (require) {
             },
             onCompleteItem :function(item, response, status, headers){
                 //console.log(response) 
+                // validate if the image is uploaded correctly(not less than 100).
+                if(response.result==-2){
+                    alert("The image u upload need to be bigger than 100*100");
+                    self.uploader.clearQueue();
+                    $("#imgFile").val("");
+                    return;
+                }else if(response.result==-1){
+                    alert("Server error");
+                    self.uploader.clearQueue();
+                    $("#imgFile").val("");
+                    return;
+                }
+
                 //after upload success, show cutting board
                 self.showCuttingBoard=true;
+   
                 var str=response.file.path.substr(4);//remove www
                 self.imgSrc=str;
-                console.log("-----",self.imgSrc)
+                self.strCut=response.file.path;
+                //console.log("-----",self.imgSrc)
 
                 //***play with $compile***
                 // $(".mask_profile .inner_box").append($compile('<cut-pic img="{{profilectrl.getImgSrc()}}" v="profilectrl.v" maxwidth="600" maxheight="400" ></cut-pic>'));
@@ -80,6 +95,22 @@ define(function (require) {
 
         this.getImgSrc=function(){
             return this.imgSrc;
+        }
+
+        this.cut=function(){
+            //console.log(this.v)
+            console.log(self.v.x / self.v.ratio)
+            $http.get("/cut",{
+                "params":{
+                    x : self.v.x / self.v.ratio,
+                    y : self.v.y / self.v.ratio,
+                    w : self.v.w / self.v.ratio,
+                    h : self.v.h / self.v.ratio,
+                    url : self.strCut
+               }
+             }).then(function(data){
+               console.log(data)
+            })
         }
         
     }]);

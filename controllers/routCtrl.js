@@ -3,6 +3,7 @@ var formidable = require('formidable');
 var User = require("../models/User");
 var crypto=require("crypto")
 var gm=require("gm");
+var url=require("url");
 
 exports.checkExist=function(req,res){
 
@@ -128,12 +129,35 @@ exports.upload=function(req,res){
     var form = new formidable.IncomingForm();
     form.uploadDir = "./www/uploads";
     form.parse(req, function (err, fields, files) {
+        if(err){
+            res.json({"result":-1})//server error
+        }
         // We need to limit pic not less than 100px both in width and height.
         // use gm to get image height and width
         gm(files.file.path).size(function (err, size) {
             if (!err)
-                console.log(size.width > size.height ? 'wider' : 'taller than you');
+                //console.log(size);
+                if(size.width<100 || size.height<100){
+                    res.json({"result":-2})//not ok
+                }else{
+                    res.json(files);
+                }
             });
-       res.json(files);
     });
+}
+
+exports.cut=function(req,res){
+        var x = url.parse(req.url,true).query.x;
+        var y = url.parse(req.url,true).query.y;
+        var w = url.parse(req.url,true).query.w;
+        var h = url.parse(req.url,true).query.h;
+
+        var imgUrl=url.parse(req.url,true).query.url;
+        //console.log("req",req)
+        console.log(imgUrl)
+
+        gm("./"+imgUrl).crop(w,h,x,y).resize(100,100,"!").write("./"+imgUrl,function(){
+            res.end("Cut done!");
+        });
+
 }

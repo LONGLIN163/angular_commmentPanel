@@ -58,8 +58,10 @@
    <div class="mask_profile cutbox" ng-show="profilectrl.showCuttingBoard">
       <div class="inner_box" id="inner_box">
          <a href="javascript:;" class="mask_close" ng-click="profilectrl.showCuttingBoard=false">x</a>
-          <!-- Include cut picture directive -->
+         <!-- Include cut picture directive -->
          <cut-pic img="{{profilectrl.getImgSrc()}}" v="profilectrl.v" maxwidth="600" maxheight="400" ></cut-pic>
+
+         <a href="javascript:;" class="btn btn-warning cutBtn" ng-click="profilectrl.cut()">Cut</a>
 
       </div>
    </div>
