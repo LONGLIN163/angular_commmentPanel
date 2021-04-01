@@ -109,3 +109,17 @@ header nav :active{
     height: 45px;
     border-radius: 50%;
 }
+
+.commentPhoto{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.commentsBox{
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 5px 0;
+
+}

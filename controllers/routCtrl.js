@@ -261,9 +261,9 @@ exports.getComment=function(req,res){
                     email:item.email,
                     date:item.date,
                     content:item.content,
-                    nickname:u.nickname,
-                    photo:u.photo,
-                    signature:u.signature
+                    nickname:u.nickname || "Sneaky Anonymous!",
+                    photo:u.photo || "/images/person.jpg",
+                    signature:u.signature || "This guy is lazy and has nothing left!"
                 }
 
                 r.push(o);
