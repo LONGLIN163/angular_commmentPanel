@@ -28,7 +28,7 @@ define(function (require) {
 
 
         this.v = {"w" : 0 , "h" : 0 , "x" : 0 , "y" : 0};
-        this.showCuttingBoard=false;
+        
         this.uploader = new FileUploader({
             url :"/upload",
             filters: [{
@@ -46,15 +46,19 @@ define(function (require) {
                //console.log(item)
                //console.log(item.file.size)
                if(item.file.size>500*1024){
-                   alert("Please upload a image smaller than 200kb")
+                  self.uploader.clearQueue();
+                  $("#imgFile").val("");
+                  alert("Please upload a image smaller than 200kb")
+                  return;
                }
                item.upload();
             },
             onWhenAddingFileFailed:function(){
-                alert("Please upload a correct format pictrue!")
+                  alert("Please upload a correct format pictrue!")
                 //this.clearQueue();//*****incorrect***** */
-                self.uploader.clearQueue();
-                $("#imgFile").val("");
+                  self.uploader.clearQueue();
+                  $("#imgFile").val("");
+                  return;
             },
             onCompleteItem :function(item, response, status, headers){
                 //console.log(response) 
@@ -97,9 +101,11 @@ define(function (require) {
             return this.imgSrc;
         }
 
+        this.showCuttingBoard=false;
+
         this.cut=function(){
             //console.log(this.v)
-            console.log(self.v.x / self.v.ratio)
+            //console.log(self.v.x / self.v.ratio)
             $http.get("/cut",{
                 "params":{
                     x : self.v.x / self.v.ratio,
@@ -118,14 +124,19 @@ define(function (require) {
                self.showCuttingBoard=false;
                // show new image
                //*********use ?ueryString to prevent to read saved cache****************
-               self.formObj.photo=self.imgSrc+"?"+Date.parse(new Date());
+
+               self.formObj.photo=self.strCut.substr(4)+"?"+Date.parse(new Date());
 
             })
         }
 
+        this.formObj={
+            "photo":"/images/person.jpg"
+        };
         //get the head photo
         this.getPhoto=function(){
-            return self.formObj.photo;
+            console.log("2---",this.formObj.photo)
+            return this.formObj.photo;
         }
         
     }]);
