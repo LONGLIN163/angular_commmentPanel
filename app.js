@@ -29,10 +29,13 @@ app.post("/user"       ,routCtrl.doRegister);
 app.get("/checkLogin"  ,routCtrl.checkLogin); 
 app.post("/login"      ,routCtrl.login); 
 app.get("/profile"     ,routCtrl.profile); 
+app.post("/profile"    ,routCtrl.updateProfile); 
+
 app.post("/upload"     ,routCtrl.upload); 
 app.get("/cut"         ,routCtrl.cut); 
 
 app.post("/comment"    ,routCtrl.publishComment); 
+app.get("/comment"    ,routCtrl.getComment); 
 
 //staticize a folder
 app.use(express.static('www')) 

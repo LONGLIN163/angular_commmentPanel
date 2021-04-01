@@ -8,9 +8,8 @@ define(function (require) {
         'titleService',
         '$http',
         'FileUploader', 
-        '$compile',
-        '$scope',
-        function (titleService,$http,FileUploader,$scope,$compile) {
+        '$state',
+        function (titleService,$http,FileUploader,$state) {
 
         var self=this;
 
@@ -135,8 +134,22 @@ define(function (require) {
         };
         //get the head photo
         this.getPhoto=function(){
-            console.log("2---",self.formObj.photo)
+            //console.log("2---",self.formObj.photo)
             return self.formObj.photo;
+        }
+
+        this.update=function(){
+            console.log(self.formObj)
+            $http.post("/profile",self.formObj).then(function(data){
+               console.log(data)
+               var result=data.data.result;
+               if(result==1){
+                   alert("update profile success!")
+                   $state.go("root.home");
+               }else{
+                   alert("update failed, please try it again!")
+               }
+            })
         }
         
     }]);

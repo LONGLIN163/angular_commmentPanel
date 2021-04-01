@@ -130,6 +130,46 @@ exports.profile=function(req,res){
    })
 }
 
+
+exports.updateProfile=function(req,res){
+    var form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files) {
+        if(err){
+            res.json({"result":-1});//-1: server error
+            return;
+        }
+        var email=fields.email;
+        //console.log(email)
+        User.find({"email":email},function(err,results){
+            if(err){
+                res.json({"result":-1});//-1: server error
+                return;
+            }
+
+            var u=results[0];
+
+            u.nickname=fields.nickname;
+            u.signature=fields.signature;
+            u.photo=fields.photo;
+            u.save(function(err){
+                if(err){
+                    res.json({"result":-1});//-1: server error
+                    return;
+                }else{
+                    req.session.login=true;
+                    req.session.email=email;
+                    req.session.nickname=results[0].nickname;
+                    req.session.photo=results[0].photo;
+                    res.json({"result":1});//1: save into database
+                }
+            });
+
+        })
+    })
+}
+
+
+
 exports.upload=function(req,res){
     var form = new formidable.IncomingForm();
     form.uploadDir = "./www/uploads";
@@ -199,4 +239,41 @@ exports.publishComment=function(req,res){
         });
 
     });
+}
+
+exports.getComment=function(req,res){
+    Comment.find({},function(err,commentResults){
+        //res.json({"results":commentResults})
+        var r=[];
+        commentResults.forEach(function(item){
+            //console.log(item)
+            User.find({"email":item.email},function(err,userResults){
+                var u=userResults[0];
+                if(!u) return;
+                
+                // //****model schema would not allow u to change the model, this one would not enter database */
+                // item.nickname=u.nickname;
+                // item.photo=u.photo;
+                // item.signature=u.signature;
+                // r.push(item);
+
+                var o={
+                    email:item.email,
+                    date:item.date,
+                    content:item.content,
+                    nickname:u.nickname,
+                    photo:u.photo,
+                    signature:u.signature
+                }
+
+                r.push(o);
+
+                if(r.length==commentResults.length){
+                    res.json({"results":r})
+                }
+
+            })
+        })
+        //res.json({"results":r})
+    })
 }
