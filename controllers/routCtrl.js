@@ -157,7 +157,7 @@ exports.cut=function(req,res){
         console.log(imgUrl)
 
         gm("./"+imgUrl).crop(w,h,x,y).resize(100,100,"!").write("./"+imgUrl,function(){
-            res.end("Cut done!");
+            res.json({"result": 1})
         });
 
 }

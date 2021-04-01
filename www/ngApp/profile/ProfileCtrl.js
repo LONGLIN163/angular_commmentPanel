@@ -109,8 +109,23 @@ define(function (require) {
                     url : self.strCut
                }
              }).then(function(data){
-               console.log(data)
+               //console.log(data)
+               var result=data.data.result;
+               if(result==1){
+                   alert("Cut image done!")
+               }
+               //close the cutting model
+               self.showCuttingBoard=false;
+               // show new image
+               //*********use ?ueryString to prevent to read saved cache****************
+               self.formObj.photo=self.imgSrc+"?"+Date.parse(new Date());
+
             })
+        }
+
+        //get the head photo
+        this.getPhoto=function(){
+            return self.formObj.photo;
         }
         
     }]);
