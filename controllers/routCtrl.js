@@ -138,6 +138,10 @@ exports.updateProfile=function(req,res){
             res.json({"result":-1});//-1: server error
             return;
         }
+
+        console.log("fields:",fields);
+
+
         var email=fields.email;
         //console.log(email)
         User.find({"email":email},function(err,results){
@@ -151,6 +155,10 @@ exports.updateProfile=function(req,res){
             u.nickname=fields.nickname;
             u.signature=fields.signature;
             u.photo=fields.photo;
+            //u.password=fields.password;
+            u.password=crypto.createHash("sha256").update(fields.password).digest("hex");
+            //console.log("new password:",fields.password);
+            console.log("u:",u);
             u.save(function(err){
                 if(err){
                     res.json({"result":-1});//-1: server error

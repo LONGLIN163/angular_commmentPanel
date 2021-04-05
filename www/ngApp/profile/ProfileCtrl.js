@@ -139,7 +139,7 @@ define(function (require) {
         }
 
         this.update=function(){
-            console.log(self.formObj)
+            console.log("form:",self.formObj)
             $http.post("/profile",self.formObj).then(function(data){
                console.log(data)
                var result=data.data.result;
