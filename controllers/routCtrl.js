@@ -304,6 +304,11 @@ exports.getComment=function(req,res){
     Comment.find({},function(err,commentResults){
         //res.json({"results":commentResults})
         var r=[];
+
+        if(!commentResults){
+            return;
+        }
+
         commentResults.forEach(function(item){
             //console.log(item)
             User.find({"email":item.email},function(err,userResults){

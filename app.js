@@ -8,7 +8,7 @@ var app = express();
 //Connect to database
 //mongoose.connect('mongodb://localhost/myangulardb', {//********back up**********
 
-mongoose.connect('mongodb+srv://developerlin:<password>@cluster0.r4ghm.mongodb.net/myag1db?retryWrites=true&w=majority', {//********back up**********
+mongoose.connect('mongodb+srv://developerlin:Long2021...@cluster0.r4ghm.mongodb.net/myag1db?retryWrites=true&w=majority', {//********back up**********
 	useNewUrlParser: true,
 	useCreateIndex:true
 }).then(()=>{
@@ -52,14 +52,14 @@ app.use(function(req,res){
 
 //listening
 
-app.listen(process.env.PORT, '0.0.0.0');
-console.log("The app is running on server!")
+// app.listen(process.env.PORT, '0.0.0.0');
+// console.log("The app is running on server!")
 
 
 
-// var server = app.listen(process.env.PORT || 3000, function () {
-// var port = server.address().port;
-// console.log("App now running on port", port);
-// });
+var server = app.listen(process.env.PORT || 3000, function () {
+var port = server.address().port;
+console.log("App now running on port", port);
+});
 
 
