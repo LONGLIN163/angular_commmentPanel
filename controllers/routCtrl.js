@@ -108,6 +108,17 @@ exports.login=function(req,res){
     })
 }
 
+
+exports.logout=function(req,res){
+    console.log("11111111111111111")
+    req.session.login = false;
+    req.session.email = "";
+    req.session.nickname = "";
+    res.redirect("/#!/login");
+    return;
+}
+
+
 exports.profile=function(req,res){
     if(!req.session.login){
         res.json({

@@ -28,6 +28,8 @@ app.post("/checkExist" ,routCtrl.checkExist);
 app.post("/user"       ,routCtrl.doRegister); 
 app.get("/checkLogin"  ,routCtrl.checkLogin); 
 app.post("/login"      ,routCtrl.login); 
+app.get("/logout"     ,routCtrl.logout); 
+
 app.get("/profile"     ,routCtrl.profile); 
 app.post("/profile"    ,routCtrl.updateProfile); 
 
