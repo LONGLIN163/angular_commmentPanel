@@ -6,7 +6,9 @@ var routCtrl=require("./controllers/routCtrl")
 //Create express app obj
 var app = express();
 //Connect to database
-mongoose.connect('mongodb://localhost/myangulardb', {//********back up**********/
+//mongoose.connect('mongodb://localhost/myangulardb', {//********back up**********
+
+mongoose.connect('mongodb+srv://developerlin:<password>@cluster0.r4ghm.mongodb.net/myag1db?retryWrites=true&w=majority', {//********back up**********
 	useNewUrlParser: true,
 	useCreateIndex:true
 }).then(()=>{
