@@ -51,9 +51,15 @@ app.use(function(req,res){
 })
 
 //listening
-var server = app.listen(process.env.PORT || 3000, function () {
-var port = server.address().port;
-console.log("App now running on port", port);
-});
+
+app.listen(process.env.PORT, '0.0.0.0');
+console.log("The app is running on server!")
+
+
+
+// var server = app.listen(process.env.PORT || 3000, function () {
+// var port = server.address().port;
+// console.log("App now running on port", port);
+// });
 
 
