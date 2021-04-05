@@ -32,6 +32,7 @@ app.get("/logout"     ,routCtrl.logout);
 
 app.get("/profile"     ,routCtrl.profile); 
 app.post("/profile"    ,routCtrl.updateProfile); 
+app.post("/updatePwd"  ,routCtrl.updatePwd); 
 
 app.post("/upload"     ,routCtrl.upload); 
 app.get("/cut"         ,routCtrl.cut); 

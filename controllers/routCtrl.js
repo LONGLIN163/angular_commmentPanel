@@ -167,6 +167,46 @@ exports.updateProfile=function(req,res){
             u.signature=fields.signature;
             u.photo=fields.photo;
             //u.password=fields.password;
+            //console.log(typeof fields.password);
+            //u.password=crypto.createHash("sha256").update(fields.password).digest("hex");
+            //console.log("new password:",fields.password);
+            //console.log("u:",u);
+            u.save(function(err){
+                if(err){
+                    res.json({"result":-1});//-1: server error
+                    return;
+                }else{
+                    req.session.login=true;
+                    req.session.email=email;
+                    req.session.nickname=results[0].nickname;
+                    req.session.photo=results[0].photo;
+                    res.json({"result":1});//1: save into database
+                }
+            });
+
+        })
+    })
+}
+
+exports.updatePwd=function(req,res){
+
+    var form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files) {
+        if(err){
+            res.json({"result":-1});//-1: server error
+            return;
+        }
+
+        var email=  req.session.email;
+        console.log(email)
+
+        User.find({"email":email},function(err,results){
+            if(err){
+                res.json({"result":-1});//-1: server error
+                return;
+            }
+
+            var u=results[0];
             u.password=crypto.createHash("sha256").update(fields.password).digest("hex");
             //console.log("new password:",fields.password);
             console.log("u:",u);

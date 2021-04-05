@@ -151,6 +151,18 @@ define(function (require) {
                }
             })
         }
-        
+        this.updatePwd=function(){
+            console.log("form:",self.formObj)
+            $http.post("/updatePwd",self.formObj).then(function(data){
+               console.log(data)
+               var result=data.data.result;
+               if(result==1){
+                   alert("Change password success!")
+                   $state.go("root.home");
+               }else{
+                   alert("Change password failed, please try it again!")
+               }
+            })
+        }
     }]);
 });
