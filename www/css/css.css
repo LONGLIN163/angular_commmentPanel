@@ -95,6 +95,7 @@ header nav :active{
 
 .jumbotron{
     position: relative;
+    height: 200px;
 }
 
 .jumbotron h3{
@@ -122,4 +123,20 @@ header nav :active{
     margin-top: 10px;
     padding: 5px 0;
 
+}
+
+.habla{
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.hablaDate{
+    font-size: 12px;
+    color: lightgray;
+}
+
+.hablaInput{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

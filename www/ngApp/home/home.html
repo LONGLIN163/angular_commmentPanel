@@ -8,24 +8,28 @@
                <h3>{{homectrl.getNickname()}}, please express your opinion!</h3>
                <div class="col-lg-12">
                   <!-- Bug if using auto focus:Autofocus processing was blocked because a document's URL has a fragment '# -->
-                  <input type="text" class="form-control" placeholder="Press enter to publish" ng-keydown="homectrl.postComment($event)" ng-model="homectrl.content">
+                  <input type="text" class="form-control hablaInput" placeholder="Press enter to publish" ng-keydown="homectrl.postComment($event)" ng-model="homectrl.content">
                </div>
-         </div>
-         <div class="jumbotron" ng-if="!homectrl.checkLogin()">
-            <div class="alert">Please login, then you can comment here! </div>
-      </div>
-      </div>
-
-      <div class="container">
-         <div class=container>
-            <div class="col-lg-12 col-offset-2 commentsBox"  ng-repeat="item in homectrl.comments">
-               <img src="{{item.photo}}" alt="" class="commentPhoto">
-               {{item.nickname}}:
-               <p>{{item.content}}</p>
-               <p>{{item.date}}</p>
             </div>
+            <div class="jumbotron" ng-if="!homectrl.checkLogin()">
+               <div class="alert">Please login, then you can comment here! </div>
+            </div>
+
+            
          </div>
-      </div>
+
+
+         <div class="container">
+
+               <div class="col-lg-12 col-offset-2 commentsBox"  ng-repeat="item in homectrl.comments">
+                  <img src="{{item.photo}}" alt="" class="commentPhoto">
+                  {{item.nickname}}:
+                  <p class="habla">{{item.content}}</p>
+                  <p class="hablaDate">{{item.date}}</p>
+               </div>
+
+         </div>
+
 
    </div>
 </div>
