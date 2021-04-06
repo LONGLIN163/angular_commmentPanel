@@ -28,9 +28,10 @@ define(function (require) {
         $http.get("/comment").then(function(data){
             self.comments=data.data.results;
             //self.comments.sort(compare("date"));
-            self.comments.sort(function(a,b) {
-                return Date.parse(b.date.replace(/-/g,"/"))-Date.parse(a.date.replace(/-/g,"/"));
-            })
+            // self.comments.sort(function(a,b) {
+            //     return Date.parse(b.date.replace(/-/g,"/"))-Date.parse(a.date.replace(/-/g,"/"));
+            // })
+            self.comments.sort((a, b) => b.date.localeCompare(a.date) || b.time.localeCompare(a.time));
             console.log(self.comments)
         })   
 
@@ -78,7 +79,6 @@ define(function (require) {
                   })
               }
         }
-
 
     }]); 
 });
